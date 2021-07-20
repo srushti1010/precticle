@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+body{
+  font-family: Calibri, Helvetica, sans-serif;
+  background-color: pink;
+}
+.container {
+    padding: 50px;
+  background-color: lightblue;
+}
+
+input[type=text], input[type=password], textarea {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+}
+input[type=text]:focus, input[type=password]:focus {
+  background-color: orange;
+  outline: none;
+}
+ div {
+            padding: 10px 0;
+         }
+hr {
+  border: 1px solid #f1f1f1;
+  margin-bottom: 25px;
+}
+.registerbtn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 16px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+}
+.registerbtn:hover {
+  opacity: 1;
+}
+
+
+
+
+
+
+
+
+    </style>
+
+
+    {% if flage > 0 %}
+
+
+    <div class="alert alert-success" role="alert" style="margin-top:-7%;">
+        Your Profile Edited Successfully!
+    </div>
+
+
+    {% endif %}
+
+
+</head>
+<body>
+<form action="update_investor_after" method="post">
+    {% csrf_token %}
+    <div class="container">
+        {% for x in data %}
+        <center><h1> Update Profile</h1></center>
+        <hr>
+        <label> Investor: </label>
+        <input type="text" name="investor" placeholder="investor" size="15" value="{{x.investor}}" required/>
+
+        <label> Borrower: </label>
+        <input type="text" name="Borrower" placeholder="Borrower" size="15" value="{{x.Borrower}}"/>
+
+        <label> Amount: </label>
+        <input type="text" name="amount" placeholder="amount" size="15" value="{{x.amount}}" required disabled>
+
+        <label> date: </label>
+        <input type="text" name="password" placeholder="Password" value="{{x.birth_date|date:'Y-m-d'}}" size="15"
+               required/>
+        <br/>
+        <button type="submit" class="registerbtn">Update profile</button>
+    </div>
+    {% endfor %}
+</form>
+</body>
+</html>
